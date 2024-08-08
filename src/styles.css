@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Salisbury;
+  src: url('../assets/SalisburyBold.ttf') format("truetype");
+}
+
+:root {
+  --sepia-background: #E1D8C8;
+  --sepia-text: #4F321C;
+}
+
+.light-theme {
+  background-color: var(--sepia-background);
+  color: var(--sepia-text);
+}
+
+.light-button-small {
+  color: var(--sepia-text);
+  background-color: var(--sepia-background);
+  opacity: 0.3;
+  transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+
+}
+
+.light-button-small:hover {
+  color: var(--sepia-text);
+  background-color: var(--sepia-background);
+  opacity: 1.0;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+.light-button-big {
+  color: var(--sepia-text);
+  background-color: var(--sepia-background);
+  opacity: 1;
+  width: 100%;
+  transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+}
+
+.light-button-big:hover {
+  color: var(--sepia-text);
+  background-color: var(--sepia-background);
+  opacity: 0.6;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
