@@ -18,11 +18,13 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+    "resolveJsonModule": true,
     "lib": [
       "ES2022",
       "dom"
     ]
   },
+  "include": ["src", "types"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

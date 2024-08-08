@@ -33,6 +33,26 @@
   -webkit-transition: opacity .2s ease-in-out;
 }
 
+.light-button-small-task {
+  color: var(--sepia-text);
+  background-color: var(--sepia-background);
+  opacity: 0.3;
+  transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+
+}
+
+.light-button-small-task:hover {
+  color: var(--sepia-text);
+  background-color: var(--sepia-background);
+  opacity: 1.0;
+  cursor: pointer;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
 .light-button-big {
   color: var(--sepia-text);
   background-color: var(--sepia-background);
@@ -52,3 +72,16 @@
   -webkit-transition: opacity .2s ease-in-out;
 }
 
+.p-tooltip .p-tooltip-text {
+  color: var(--sepia-background);
+  background-color: var(--sepia-text);
+}
+
+.p-tooltip-arrow {
+  border-color: transparent;
+}
+
+.p-divider.p-divider-horizontal:before {
+  border-top: 1px solid var(--sepia-text) !important;
+  opacity: 0.2;
+}

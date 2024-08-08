@@ -1,3 +1,6 @@
-<div class="flex justify-content-between">
-  <h3 style="font-family: 'salisbury', 'arial', serif;">Due today</h3>
+<div class="flex flex-column gap-4">
+  @for (task of taskData; track task.taskId) {
+    <app-task-view [task]="task" />
+    <p-divider></p-divider>
+  }
 </div>
