@@ -1,18 +1,18 @@
-<div class="m-0">
+<div class="m-0" style="max-width: 50vw">
   <h3 class='m-0 mb-3' style="font-family: 'salisbury', 'arial', serif;">{{ checkIfDueToday(task.dueDate) }}</h3>
   <span class="flex justify-content-between">
-    <span class='text-lg' [ngClass]="{'line-through': task.isCompleted}">
+    <span class='text-lg font-semibold	' [ngClass]="{'line-through': task.isCompleted}">
       <i class="pi mr-1 py-2 my-1 px-3 light-button-small-task" [ngClass]="task.isCompleted ? 'pi-times-circle' : 'pi-check-circle'" (click)="markAsCompleted(task)" pTooltip="{{task.isCompleted ? 'Task not completed' : 'Task completed'}}" tooltipPosition="left"></i>
           {{task.label}}
     </span>
     <span class="flex gap-5">
       <i class="pi pi-plus-circle light-button-small-task" pTooltip="Add sub task" tooltipPosition="bottom"></i>
       <i class="pi pi-pen-to-square light-button-small-task" pTooltip="Edit task" tooltipPosition="bottom"></i>
-      <i class="pi pi-file-plus light-button-small-task" pTooltip="Add note" tooltipPosition="bottom"></i>
+      <i class="pi light-button-small-task" [ngClass]="task.note.text != '' ? 'pi-file-edit' : 'pi-file-plus'" pTooltip="{{task.note.text != ''? 'Edit note' : 'Add note'}}" tooltipPosition="bottom"></i>
     </span>
   </span>
 
-  <span [ngClass]="task.note.isImportant ? 'opacity-70 text-red-600' : 'opacity-40'" class="block text-sm" style="margin-left: 3.6rem">{{task.note.text}}</span>
+  <span *ngIf="task.note.text != ''" [ngClass]="task.note.isImportant ? 'opacity-70 text-red-600' : 'opacity-40'" class="block text-sm mt-2" style="margin-left: 3.6rem"><i class="pi pi-file text-sm mr-2" ></i>{{task.note.text}}</span>
 
   <span class="flex flex-column mt-2 " style="margin-left: 3.6rem">
   @for (subTask of task.subTasks; track subTask) {

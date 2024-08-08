@@ -124,8 +124,8 @@
     "taskId": "66b4c34286766548da017f6c",
     "label": "Sunt eiusmod excepteur do in reprehenderit culpa minim anim amet duis consequat.",
     "note": {
-      "text": "Lorem voluptate fugiat incididunt aliquip.",
-      "isImportant": true
+      "text": "",
+      "isImportant": false
     },
     "subTasks": [
       {

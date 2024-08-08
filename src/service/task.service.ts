@@ -9,6 +9,11 @@ import {Task} from "../model/task";
 })
 export class TaskService {
   sampleDate() {
-    return sampleData as unknown as Task[];
+    const sampleDataArray =  sampleData as unknown as Task[];
+    return sampleDataArray.sort(this.dateSort)
+  }
+
+   dateSort(a: Task, b: Task) {
+    return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
   }
 }
