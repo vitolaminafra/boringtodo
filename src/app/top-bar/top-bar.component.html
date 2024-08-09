@@ -15,9 +15,9 @@
     <span class="flex gap-3 flex-column">
       <p-button label="Download" icon="pi pi-download" [outlined]="true" [styleClass]="'light-button-big'" />
       <p-button label="Upload" icon="pi pi-upload" [outlined]="true" [styleClass]="'light-button-big'" />
-      <p-button label="Delete all tasks" icon="pi pi-trash" severity="danger" />
+      <p-button label="Delete all tasks" icon="pi pi-trash" severity="danger" (onClick)="deleteAll()"/>
       <p-divider></p-divider>
-      <p-button label="Sample data" icon="pi pi-database" [outlined]="true" [styleClass]="'light-button-big'" />
+      <p-button label="Sample data" icon="pi pi-database" [outlined]="true" [styleClass]="'light-button-big'" (onClick)="loadSampleData()"/>
     </span>
   </div>
 </p-overlayPanel>

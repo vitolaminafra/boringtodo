@@ -1,5 +1,11 @@
-<app-top-bar />
+<p-toast/>
+<p-confirmDialog />
+<app-top-bar (loadSampleDataEmitter)="loadSampleData()" (deleteAllEmitter)="deleteAll()"/>
+
+<p-divider *ngIf="taskData.length != 0"></p-divider>
 
 <app-tasks-section [taskData]="taskData"/>
+
+<p-scrollTop />
 
 <router-outlet />

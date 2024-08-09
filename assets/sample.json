@@ -9,20 +9,20 @@
     "subTasks": [
       {
         "label": "Proident consectetur minim magna aliquip consectetur occaecat consequat ipsum commodo anim nulla.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       },
       {
 
         "label": "Ea exercitation duis dolore laborum ex amet irure.",
-        "isCompleted": false
+        "isCompleted": false, "isDeleted": false
       },
       {
         "label": "Dolor amet aliquip do elit aute.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       }
     ],
     "dueDate": "2024-04-03T05:19:17",
-    "isCompleted": false
+    "isCompleted": false, "isDeleted": false
   },
   {
     "taskId": "66b4c342c89ff2811a90c7f5",
@@ -34,11 +34,11 @@
     "subTasks": [
       {
         "label": "Amet officia dolore irure incididunt id dolore excepteur ad nisi quis aliqua eiusmod.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       }
     ],
     "dueDate": "2024-03-06T12:35:48",
-    "isCompleted": true
+    "isCompleted": true, "isDeleted": false
   },
   {
     "taskId": "66b4c342449fe04172bebe16",
@@ -52,25 +52,25 @@
 
         "label": "Cillum sit est dolor consequat laborum.",
 
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       },
       {
 
         "label": "Cupidatat fugiat sint laboris exercitation ex magna esse quis qui sit do velit dolor.",
 
-        "isCompleted": false
+        "isCompleted": false, "isDeleted": false
       },
       {
         "label": "Consectetur ex aliqua cillum irure excepteur eiusmod dolor dolore est eiusmod est.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       },
       {
         "label": "Dolor excepteur officia non proident in est ad nostrud.",
-        "isCompleted": false
+        "isCompleted": false, "isDeleted": false
       }
     ],
     "dueDate": "2024-02-01T08:09:00",
-    "isCompleted": false
+    "isCompleted": false, "isDeleted": false
   },
   {
     "taskId": "66b4c342b884fa4e16549855",
@@ -82,23 +82,23 @@
     "subTasks": [
       {
         "label": "Duis voluptate excepteur cupidatat ipsum enim deserunt deserunt commodo quis fugiat exercitation duis exercitation.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       },
       {
         "label": "In ipsum elit reprehenderit proident ex mollit laborum.",
-        "isCompleted": false
+        "isCompleted": false, "isDeleted": false
       },
       {
         "label": "Incididunt sit ad dolor ea culpa eiusmod et dolor consequat pariatur qui.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       },
       {
         "label": "Duis voluptate excepteur cupidatat ipsum enim deserunt deserunt commodo quis fugiat exercitation duis exercitation.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       }
     ],
     "dueDate": "2024-05-21T08:05:38",
-    "isCompleted": false
+    "isCompleted": false, "isDeleted": false
   },
   {
     "taskId": "66b4c342a78dedb08c9f5542",
@@ -110,15 +110,15 @@
     "subTasks": [
       {
         "label": "Sint pariatur consequat proident mollit esse dolor duis.",
-        "isCompleted": false
+        "isCompleted": false, "isDeleted": false
       },
       {
         "label": "Excepteur est sunt dolore consequat anim duis cillum consequat mollit ullamco ea.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       }
     ],
     "dueDate": "2024-01-11T10:23:57",
-    "isCompleted": true
+    "isCompleted": true, "isDeleted": false
   },
   {
     "taskId": "66b4c34286766548da017f6c",
@@ -130,18 +130,18 @@
     "subTasks": [
       {
         "label": "Esse mollit incididunt adipisicing proident commodo eiusmod dolore voluptate laborum et deserunt.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       },
       {
         "label": "Magna labore nisi anim ut enim cupidatat.",
-        "isCompleted": false
+        "isCompleted": false, "isDeleted": false
       },
       {
         "label": "Sint eiusmod enim consequat qui.",
-        "isCompleted": true
+        "isCompleted": true, "isDeleted": false
       }
     ],
     "dueDate": "2024-08-08T05:09:17",
-    "isCompleted": false
+    "isCompleted": false, "isDeleted": false
   }
 ]
