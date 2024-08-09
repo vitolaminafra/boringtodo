@@ -1,23 +1,84 @@
-<div class="flex justify-content-between align-items-center mt-4 mb-4" style="width: 50vw">
-  <h1 style="font-family: 'salisbury', 'arial', serif;">Boring To Do</h1>
+<div
+  class="flex justify-content-between align-items-center mt-4 mb-4"
+  style="width: 50vw"
+>
+  <h1 style="font-family: salisbury, arial, serif">Boring To Do</h1>
   <span class="flex gap-2">
-    <p-button icon="pi pi-cog" [rounded]="true" [text]="true" [styleClass]="'light-button-small'"
-              pTooltip="Settings" tooltipPosition="bottom" (onClick)="settingsPanel.toggle($event)"/>
-    <p-button icon="pi pi-moon" [rounded]="true" [text]="true" [styleClass]="'light-button-small'"
-              pTooltip="Switch to dark mode" tooltipPosition="bottom"/>
-    <p-button icon="pi pi-plus-circle" [rounded]="true" [text]="true" [styleClass]="'light-button-small'"
-              pTooltip="Add new task" tooltipPosition="bottom"/>
+    <p-button
+      icon="pi pi-cog"
+      [rounded]="true"
+      [text]="true"
+      [styleClass]="'light-button-small'"
+      pTooltip="Settings"
+      tooltipPosition="bottom"
+      (onClick)="settingsPanel.toggle($event)"
+    />
+    <p-button
+      icon="pi pi-moon"
+      [rounded]="true"
+      [text]="true"
+      [styleClass]="'light-button-small'"
+      pTooltip="Switch to dark mode"
+      tooltipPosition="bottom"
+    />
+    <p-button
+      [rounded]="true"
+      [text]="true"
+      [styleClass]="'light-button-small'"
+      icon="{{
+        taskService.getOrder() == 'ASC'
+          ? 'pi pi-sort-amount-down-alt'
+          : 'pi pi-sort-amount-down'
+      }}
+      "
+      (onClick)="orderChanged()"
+      pTooltip="{{
+        taskService.getOrder() == 'ASC'
+          ? 'Recent and future tasks first'
+          : 'Past tasks first'
+      }}"
+      tooltipPosition="bottom"
+    />
+    <p-button
+      icon="pi pi-plus-circle"
+      [rounded]="true"
+      [text]="true"
+      [styleClass]="'light-button-small'"
+      pTooltip="Add new task"
+      tooltipPosition="bottom"
+    />
   </span>
 </div>
 
 <p-overlayPanel #settingsPanel>
   <div class="w-full">
     <span class="flex gap-3 flex-column">
-      <p-button label="Download" icon="pi pi-download" [outlined]="true" [styleClass]="'light-button-big'" />
-      <p-button label="Upload" icon="pi pi-upload" [outlined]="true" [styleClass]="'light-button-big'" />
-      <p-button label="Delete all tasks" icon="pi pi-trash" severity="danger" (onClick)="deleteAll()"/>
+      <p-button
+        label="Download"
+        icon="pi pi-download"
+        [outlined]="true"
+        [styleClass]="'light-button-big'"
+      />
+      <p-button
+        label="Upload"
+        icon="pi pi-upload"
+        [outlined]="true"
+        [styleClass]="'light-button-big'"
+      />
+      <p-button
+        label="Delete all tasks"
+        icon="pi pi-trash"
+        severity="danger"
+        (onClick)="deleteAll()"
+      />
       <p-divider></p-divider>
-      <p-button label="Sample data" icon="pi pi-database" [outlined]="true" [styleClass]="'light-button-big'" (onClick)="loadSampleData()"/>
+      <p-button
+        label="Sample data"
+        icon="pi pi-database"
+        [outlined]="true"
+        [styleClass]="'light-button-big'"
+        (onClick)="loadSampleData()"
+      />
     </span>
   </div>
 </p-overlayPanel>

@@ -1,10 +1,14 @@
-<p-toast/>
+<p-toast />
 <p-confirmDialog />
-<app-top-bar (loadSampleDataEmitter)="loadSampleData()" (deleteAllEmitter)="deleteAll()"/>
+<app-top-bar
+  (loadSampleDataEmitter)="loadSampleData()"
+  (deleteAllEmitter)="deleteAll()"
+  (loadDataEmitter)="loadData()"
+/>
 
 <p-divider *ngIf="taskData.length != 0"></p-divider>
 
-<app-tasks-section [taskData]="taskData"/>
+<app-tasks-section [taskData]="taskData" />
 
 <p-scrollTop />
 

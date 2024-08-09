@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../../model/task';
 import { formatDate, NgClass, NgIf } from '@angular/common';
 import { DividerModule } from 'primeng/divider';
@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { SubTask } from '../../model/sub-task';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-task-view',
@@ -21,24 +22,28 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     NgIf,
     InputTextModule,
     FormsModule,
+    CalendarModule,
   ],
   templateUrl: './task-view.component.html',
   styleUrl: './task-view.component.css',
 })
-export class TaskViewComponent {
+export class TaskViewComponent implements OnInit {
   @Input() task!: Task;
   @Output() editedTaskEmitter = new EventEmitter();
 
   private _editMode: boolean = false;
+  private _taskDate: Date = new Date();
 
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
   ) {}
 
-  checkIfDueToday(dueDate: Date) {
-    const today = formatDate(new Date(), 'dd MMMM yyyy', 'en-US');
+  ngOnInit() {
+    this.taskDate = new Date(this.task.dueDate);
+  }
 
+  checkIfDueToday(dueDate: Date) {
     const todayDate = new Date();
     const taskDate = new Date(dueDate);
 
@@ -71,6 +76,17 @@ export class TaskViewComponent {
     }
   }
 
+  get taskDate() {
+    return this._taskDate;
+  }
+
+  set taskDate(date: Date) {
+    this._taskDate = date;
+    this.task.dueDate = date;
+
+    this.editedTaskEmitter.emit();
+  }
+
   deleteTask() {
     this.confirmationService.confirm({
       message: 'Do you want to delete this tasks and all sub tasks?',
@@ -94,6 +110,16 @@ export class TaskViewComponent {
 
   deleteSubTask(subTask: SubTask) {
     subTask.isDeleted = true;
+    this.editedTaskEmitter.emit();
+  }
+
+  deleteNote() {
+    this.task.note.text = '';
+    this.editedTaskEmitter.emit();
+  }
+
+  importantNoteToggle() {
+    this.task.note.isImportant = !this.task.note.isImportant;
     this.editedTaskEmitter.emit();
   }
 }

@@ -1,8 +1,19 @@
 <div class="m-0" style="max-width: 50vw">
   <span class="flex justify-content-between">
-    <h3 class="m-0 mb-3" style="font-family: salisbury, arial, serif">
+    <h3
+      *ngIf="!editMode; else dueDateEditMode"
+      class="m-0 mb-3"
+      style="font-family: salisbury, arial, serif"
+    >
       {{ checkIfDueToday(task.dueDate) }}
     </h3>
+    <ng-template #dueDateEditMode>
+      <p-calendar
+        [(ngModel)]="taskDate"
+        class="mb-2"
+        dateFormat="dd MM yy"
+      ></p-calendar>
+    </ng-template>
     <span class="flex gap-5">
       <i
         class="pi pi-plus-circle light-button-small-task"
@@ -15,12 +26,6 @@
         pTooltip="{{ editMode ? 'Confirm edit' : 'Edit task' }}"
         tooltipPosition="bottom"
         (click)="editMode = !editMode"
-      ></i>
-      <i
-        class="pi light-button-small-task"
-        [ngClass]="task.note.text != '' ? 'pi-file-edit' : 'pi-file-plus'"
-        pTooltip="{{ task.note.text != '' ? 'Edit note' : 'Add note' }}"
-        tooltipPosition="bottom"
       ></i>
     </span>
   </span>
@@ -54,13 +59,44 @@
     </span>
   </ng-template>
 
-  <span
-    *ngIf="task.note.text != ''"
-    [ngClass]="task.note.isImportant ? 'opacity-70 text-red-600' : 'opacity-40'"
-    class="block text-sm mt-2"
-    style="margin-left: 3.6rem"
-    ><i class="pi pi-file text-sm mr-2"></i>{{ task.note.text }}</span
-  >
+  <span>
+    <span
+      *ngIf="!editMode; else editNodeMode"
+      [ngClass]="
+        task.note.isImportant ? 'opacity-70 text-red-600' : 'opacity-40'
+      "
+      class="block text-sm mt-2"
+      style="margin-left: 3.6rem"
+      ><i
+        *ngIf="task.note.text != ''"
+        class="pi pi-file text-sm mr-2 cursor-pointer"
+        pTooltip="{{
+          task.note.isImportant ? 'Remove highlight' : 'Highlight'
+        }}"
+        tooltipPosition="left"
+        (click)="importantNoteToggle()"
+      ></i
+      >{{ task.note.text }}</span
+    >
+
+    <ng-template #editNodeMode>
+      <span class="flex align-items-center mt-2" style="margin-left: 3.6rem">
+        <i
+          class="pi pi-trash text-sm mr-2 light-button-small-task"
+          pTooltip="Delete note"
+          tooltipPosition="left"
+          (click)="deleteNote()"
+        ></i>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="task.note.text"
+          [placeholder]="'Add note'"
+          class="w-full h-2rem"
+        />
+      </span>
+    </ng-template>
+  </span>
 
   <span class="flex flex-column mt-2" style="margin-left: 3.6rem">
     @for (subTask of task.subTasks; track subTask) {

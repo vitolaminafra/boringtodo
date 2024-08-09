@@ -13,10 +13,16 @@ export class TaskService {
 
     console.log('loaded sample data');
 
-    return sampleDataArray.sort(this.dateSort);
+    return sampleDataArray.sort(
+      this.getOrder() == 'ASC' ? this.ascSort : this.descSort,
+    );
   }
 
-  dateSort(a: Task, b: Task) {
+  ascSort(a: Task, b: Task) {
+    return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+  }
+
+  descSort(a: Task, b: Task) {
     return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
   }
 
@@ -32,9 +38,22 @@ export class TaskService {
 
       console.log('loaded sample data', taskData);
 
-      return taskData.sort(this.dateSort);
+      return taskData.sort(
+        this.getOrder() == 'ASC' ? this.ascSort : this.descSort,
+      );
     } else {
       return [];
     }
+  }
+
+  saveOrder() {
+    localStorage.setItem(
+      'order',
+      localStorage.getItem('order') == 'ASC' ? 'DESC' : 'ASC',
+    );
+  }
+
+  getOrder() {
+    return localStorage.getItem('order');
   }
 }
