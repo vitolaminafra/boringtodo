@@ -6,11 +6,28 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { NgClass } from '@angular/common';
 import { TaskService } from '../../service/task.service';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
+import { Task } from '../../model/task';
+import { SubTask } from '../../model/sub-task';
+import { Guid } from 'typescript-guid';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-top-bar',
   standalone: true,
-  imports: [Button, DividerModule, TooltipModule, OverlayPanelModule, NgClass],
+  imports: [
+    Button,
+    DividerModule,
+    TooltipModule,
+    OverlayPanelModule,
+    NgClass,
+    FloatLabelModule,
+    CalendarModule,
+    FormsModule,
+    InputTextModule,
+  ],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.css',
 })
@@ -18,6 +35,20 @@ export class TopBarComponent {
   @Output() loadSampleDataEmitter = new EventEmitter();
   @Output() deleteAllEmitter = new EventEmitter();
   @Output() loadDataEmitter = new EventEmitter();
+  @Output() createTaskEmitter: EventEmitter<Task> = new EventEmitter();
+
+  private _newTask: any = null;
+
+  get newTask(): Task {
+    if (this._newTask == null) {
+      this._newTask = this.generateEmptyTask();
+    }
+    return this._newTask;
+  }
+
+  set newTask(value: any) {
+    this._newTask = value;
+  }
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -69,5 +100,34 @@ export class TopBarComponent {
   orderChanged() {
     this.taskService.saveOrder();
     this.loadDataEmitter.emit();
+  }
+
+  pushNewTask() {
+    this.createTaskEmitter.emit(this.newTask);
+    this.newTask = null;
+  }
+
+  generateEmptyTask() {
+    let newTask: Task = new (class implements Task {
+      taskId = Guid.create().toString();
+      dueDate: Date = new Date();
+      isCompleted: boolean = false;
+      isDeleted: boolean = false;
+      label: string = '';
+      note!: { text: string; isImportant: boolean };
+      subTasks: [SubTask] = [
+        {
+          label: '',
+          isCompleted: false,
+          isDeleted: true,
+        },
+      ];
+    })();
+
+    newTask.note = { text: '', isImportant: false };
+
+    console.log('newTask', newTask);
+
+    return newTask;
   }
 }

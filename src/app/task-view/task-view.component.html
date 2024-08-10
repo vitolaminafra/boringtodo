@@ -12,22 +12,23 @@
         [(ngModel)]="taskDate"
         class="mb-2"
         dateFormat="dd MM yy"
+        [showButtonBar]="true"
       ></p-calendar>
     </ng-template>
     <span class="flex gap-5">
-      <i
-        class="pi light-button-small-task"
-        pTooltip="{{ createSubTaskMode ? 'Confirm sub task' : 'Add sub task' }}"
-        tooltipPosition="bottom"
-        [ngClass]="createSubTaskMode ? 'pi-check-circle' : 'pi-plus-circle'"
-        (click)="createNewSubTask()"
-      ></i>
       <i
         class="pi light-button-small-task"
         [ngClass]="editMode ? 'pi-check-square' : 'pi-pen-to-square'"
         pTooltip="{{ editMode ? 'Confirm edit' : 'Edit task' }}"
         tooltipPosition="bottom"
         (click)="editMode = !editMode"
+      ></i>
+      <i
+        class="pi light-button-small-task"
+        pTooltip="{{ createSubTaskMode ? 'Confirm sub task' : 'Add sub task' }}"
+        tooltipPosition="bottom"
+        [ngClass]="createSubTaskMode ? 'pi-check-circle' : 'pi-plus-circle'"
+        (click)="createNewSubTask()"
       ></i>
     </span>
   </span>

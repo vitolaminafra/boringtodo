@@ -46,6 +46,7 @@
       [styleClass]="'light-button-small'"
       pTooltip="Add new task"
       tooltipPosition="bottom"
+      (onClick)="createTaskPanel.toggle($event)"
     />
   </span>
 </div>
@@ -80,5 +81,29 @@
         (onClick)="loadSampleData()"
       />
     </span>
+  </div>
+</p-overlayPanel>
+
+<p-overlayPanel #createTaskPanel>
+  <div class="flex flex-column gap-5 m-4" style="width: 50rem">
+    <p-calendar
+      [(ngModel)]="newTask.dueDate"
+      id="dueDate"
+      [placeholder]="'Due date'"
+      dateFormat="dd MM yy"
+      [showButtonBar]="true"
+    />
+    <input
+      pInputText
+      [(ngModel)]="newTask.label"
+      id="label"
+      [placeholder]="'Task label'"
+      class="w-full"
+    />
+    <p-divider></p-divider>
+    <p-button
+      [label]="'Save'"
+      (onClick)="createTaskPanel.toggle($event); pushNewTask()"
+    ></p-button>
   </div>
 </p-overlayPanel>
