@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { SubTask } from '../../model/sub-task';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-task-view',
@@ -23,6 +24,7 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextModule,
     FormsModule,
     CalendarModule,
+    OverlayPanelModule,
   ],
   templateUrl: './task-view.component.html',
   styleUrl: './task-view.component.css',
@@ -33,6 +35,9 @@ export class TaskViewComponent implements OnInit {
 
   private _editMode: boolean = false;
   private _taskDate: Date = new Date();
+  private _createSubTaskMode: boolean = false;
+
+  private _subTaskLabel: string = '';
 
   constructor(
     private messageService: MessageService,
@@ -87,6 +92,22 @@ export class TaskViewComponent implements OnInit {
     this.editedTaskEmitter.emit();
   }
 
+  get createSubTaskMode() {
+    return this._createSubTaskMode;
+  }
+
+  set createSubTaskMode(value: boolean) {
+    this._createSubTaskMode = value;
+  }
+
+  get subTaskLabel() {
+    return this._subTaskLabel;
+  }
+
+  set subTaskLabel(value: string) {
+    this._subTaskLabel = value;
+  }
+
   deleteTask() {
     this.confirmationService.confirm({
       message: 'Do you want to delete this tasks and all sub tasks?',
@@ -121,5 +142,26 @@ export class TaskViewComponent implements OnInit {
   importantNoteToggle() {
     this.task.note.isImportant = !this.task.note.isImportant;
     this.editedTaskEmitter.emit();
+  }
+
+  createNewSubTask() {
+    if (this.createSubTaskMode) {
+      this.createSubTaskMode = false;
+
+      const text = this.subTaskLabel;
+
+      this.task.subTasks.push(
+        new (class implements SubTask {
+          isCompleted: boolean = false;
+          isDeleted: boolean = false;
+          label: string = text;
+        })(),
+      );
+
+      this.editedTaskEmitter.emit();
+    } else {
+      this.createSubTaskMode = true;
+      this.subTaskLabel = '';
+    }
   }
 }

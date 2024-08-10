@@ -16,9 +16,11 @@
     </ng-template>
     <span class="flex gap-5">
       <i
-        class="pi pi-plus-circle light-button-small-task"
-        pTooltip="Add sub task"
+        class="pi light-button-small-task"
+        pTooltip="{{ createSubTaskMode ? 'Confirm sub task' : 'Add sub task' }}"
         tooltipPosition="bottom"
+        [ngClass]="createSubTaskMode ? 'pi-check-circle' : 'pi-plus-circle'"
+        (click)="createNewSubTask()"
       ></i>
       <i
         class="pi light-button-small-task"
@@ -61,7 +63,7 @@
 
   <span>
     <span
-      *ngIf="!editMode; else editNodeMode"
+      *ngIf="!editMode; else editNoteMode"
       [ngClass]="
         task.note.isImportant ? 'opacity-70 text-red-600' : 'opacity-40'
       "
@@ -79,7 +81,7 @@
       >{{ task.note.text }}</span
     >
 
-    <ng-template #editNodeMode>
+    <ng-template #editNoteMode>
       <span class="flex align-items-center mt-2" style="margin-left: 3.6rem">
         <i
           class="pi pi-trash text-sm mr-2 light-button-small-task"
@@ -136,6 +138,21 @@
           </span>
         </ng-template>
       }
+    }
+
+    @if (!task.isDeleted && createSubTaskMode) {
+      <span class="ml-3 -mt-4">
+        <i
+          class="pi pi-trash mr-1 py-2 my-1 px-3 light-button-small-task text-sm opacity-0"
+        ></i>
+        <input
+          type="text"
+          pInputText
+          class="w-full h-2rem"
+          [placeholder]="'Add sub task'"
+          [(ngModel)]="subTaskLabel"
+        />
+      </span>
     }
   </span>
 </div>
