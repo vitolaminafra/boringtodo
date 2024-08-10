@@ -34,7 +34,6 @@ export class TaskService {
 
   loadLocalTasks() {
     if (localStorage.getItem('tasks') != null) {
-      console.log('here');
       const taskData = JSON.parse(localStorage.getItem('tasks') as string);
 
       console.log('loaded sample data', taskData);

@@ -55,7 +55,6 @@ export class AppComponent implements OnInit {
   }
 
   createTask(newTask: Task) {
-    console.log('newtask event', newTask);
     this.taskData.push(newTask);
     this.taskService.saveLocalTasks(this.taskData);
 

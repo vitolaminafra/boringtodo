@@ -126,8 +126,6 @@ export class TopBarComponent {
 
     newTask.note = { text: '', isImportant: false };
 
-    console.log('newTask', newTask);
-
     return newTask;
   }
 }
